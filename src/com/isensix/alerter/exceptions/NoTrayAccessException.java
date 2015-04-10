@@ -10,14 +10,14 @@ public class NoTrayAccessException extends Exception {
 	String error = "Program was unable to access System Tray";
 
 	public NoTrayAccessException(){
-		// No input
+		// No input, do nothing
 	}
 
 	public NoTrayAccessException(String input){
 		error += "\n" + input;
 	}
 
-	public String getException() {
+	public String getMessage() {
 		return error;
 	}
 }

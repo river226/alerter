@@ -15,12 +15,13 @@ import com.isensix.media.*;
 
 public class NotificationTray {
 
-	// code adapted from: https://docs.oracle.com/javase/tutorial/uiswing/misc/systemtray.html
-
+		// code adapted from: https://docs.oracle.com/javase/tutorial/uiswing/misc/systemtray.html
+		// TODO add Tray icon
 	 // Construct the System Tray
     public NotificationTray () throws NoTrayAccessException {
     	if(test()) try { run();  // Builds the app
-			} catch (AWTException e) { throw new NoTrayAccessException("Exception Thrown\n"  + e); }
+				} catch (AWTException e)
+					{ throw new NoTrayAccessException("Exception Thrown\n"  + e.getMessage()); }
     	else throw new NoTrayAccessException("No System Support");
     }
 

@@ -5,14 +5,21 @@ import com.isensix.alerter.exceptions.NoTrayAccessException;
 public class Main {
 
 	public static void main(String[] args) {
-		
-		try {
-			NotificationTray prog = new NotificationTray();
-		} catch (NoTrayAccessException e) {
-			e.printStackTrace();
-		} finally {
-			// Close the application
-		}
+			try {
+				buildGUI();
+				buildNotificationTray();
+			} finally {
+				System.exit(0);
+			}
+	}
+
+	private void buildGUI() {
+		// TODO check to see if settings have been made
+		GUI settings = new GUI();
+	}
+
+	private void buildNotificationTray() throws NoTrayAccessException {
+		NotificationTray prog = new NotificationTray();
 	}
 
 }
