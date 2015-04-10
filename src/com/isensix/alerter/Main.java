@@ -8,17 +8,19 @@ public class Main {
 			try {
 				buildGUI();
 				buildNotificationTray();
+			} catch (NoTrayAccessException e) {
+				// Do nothing for now
 			} finally {
 				System.exit(0);
 			}
 	}
 
-	private void buildGUI() {
+	private static void buildGUI() {
 		// TODO check to see if settings have been made
-		GUI settings = new GUI();
+		// GUI settings = new GUI();
 	}
 
-	private void buildNotificationTray() throws NoTrayAccessException {
+	private static void buildNotificationTray() throws NoTrayAccessException {
 		NotificationTray prog = new NotificationTray();
 	}
 
