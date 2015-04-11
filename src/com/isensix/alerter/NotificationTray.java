@@ -25,7 +25,7 @@ public class NotificationTray {
 
 		// code adapted from: https://docs.oracle.com/javase/tutorial/uiswing/misc/systemtray.html
 		// TODO add Tray icon
-	
+
 	Menu displayMenu = new Menu("Display");
 	 // Construct the System Tray
     public NotificationTray () throws NoTrayAccessException {
@@ -60,17 +60,32 @@ public class NotificationTray {
         trayIcon.setPopupMenu(popup);
 
        	tray.add(trayIcon); //Throw AWTException
-    }
-	
-	protected Image createImage(String path, String description) {
+  }
+
+	private Image createImage(String path, String description) {
         java.net.URL imageURL = NotificationTray.class.getResource(path);
-         
+
         if (imageURL == null) {
             System.err.println("Resource not found: " + path);
             return null;
         } else {
             return (new ImageIcon(imageURL, description)).getImage();
         }
-    }
+  }
+
+	private ArrayList<Alerts>() alertCheck() {
+		// if(/* alerts file doesn't exist */)
+			enableGUI();
+
+		return createAlerts();
+	}
+
+	private void enableGUI() {
+		// Build GUI to add alerts to alert file
+	}
+
+	private ArrayList<Alerts>() createAlerts() {
+		// Read in alert file, and build alerts
+	}
 
 }
