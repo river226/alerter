@@ -14,13 +14,18 @@ import java.awt.MenuItem;
 import java.awt.PopupMenu;
 import java.awt.SystemTray;
 import java.awt.TrayIcon;
+import java.util.ArrayList;
+
 import javax.print.DocFlavor.URL;
 import javax.swing.ImageIcon;
 
-// Local Imports
-import com.isensix.alerter.exceptions.*;
-import com.isensix.media.*;
+// local import
 
+
+
+import com.isensix.exceptions.NoTrayAccessException;
+
+@SuppressWarnings("unused")
 public class NotificationTray {
 
 		// code adapted from: https://docs.oracle.com/javase/tutorial/uiswing/misc/systemtray.html
@@ -73,7 +78,7 @@ public class NotificationTray {
         }
   }
 
-	private ArrayList<Alerts>() alertCheck() {
+	private ArrayList<Alerts> alertCheck() {
 		// if(/* alerts file doesn't exist */)
 			enableGUI();
 
@@ -84,8 +89,9 @@ public class NotificationTray {
 		// Build GUI to add alerts to alert file
 	}
 
-	private ArrayList<Alerts>() createAlerts() {
+	private ArrayList<Alerts> createAlerts() {
 		// Read in alert file, and build alerts
+		return null;
 	}
 
 }

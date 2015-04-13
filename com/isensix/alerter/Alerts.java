@@ -27,7 +27,7 @@ public class Alerts {
   /**
    * This method takes an int value for the day of the week:
    * mon = 0, tues = 1, wed = 2, thurs = 3,
-   * fri = 4, sat = 5, and sun =6
+   * Fri = 4, sat = 5, and sun =6
    * And returns if this alert is set for that day
    *
    * @d the day in int format, 0-6, Mon-Sun
@@ -39,10 +39,11 @@ public class Alerts {
 
   /**
    * This method returns the time alert is set for
+ * @return 
    *
    * @return time this alert is set to go off
    */
-  public void getTime() {
+  public int getTime() {
     return time;
   }
 
@@ -51,8 +52,8 @@ public class Alerts {
    *
    * @return Alert Message
    */
-  public void getMessage(){
-    return message();
+  public String getMessage(){
+    return message;
   }
 
 }

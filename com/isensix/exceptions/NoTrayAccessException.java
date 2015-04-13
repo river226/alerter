@@ -1,4 +1,4 @@
-package com.isensix.alerter.exceptions;
+package com.isensix.exceptions;
 
 public class NoTrayAccessException extends Exception {
 
@@ -14,7 +14,7 @@ public class NoTrayAccessException extends Exception {
 	}
 
 	public NoTrayAccessException(String input){
-		error += "\n" + input;
+		error = error + "\n" + input;
 	}
 
 	public String getMessage() {

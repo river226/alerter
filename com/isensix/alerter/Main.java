@@ -4,7 +4,7 @@ package com.isensix.alerter;
  * This class builds and launches the App.
  */
 
-import com.isensix.alerter.exceptions.NoTrayAccessException;
+import com.isensix.exceptions.*;
 
 public class Main {
 
