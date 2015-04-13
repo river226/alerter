@@ -6,6 +6,7 @@ package com.isensix.alerter;
 
 import com.isensix.exceptions.*;
 
+@SuppressWarnings("unused")
 public class Main {
 
 	/**
@@ -25,6 +26,7 @@ public class Main {
 	/**
 	 * This class handles building the notification tray
 	 */
+	
 	private static void buildNotificationTray() throws NoTrayAccessException {
 		NotificationTray prog = new NotificationTray();
 	}

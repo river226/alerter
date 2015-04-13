@@ -14,9 +14,9 @@ public class Alerts {
   /**
    * Takes in values to build the alert
    *
-   * @t time alert is set to go off
-   * @d Days in boolean array (size 6, mon-sun) that alert is set to go off
-   * @m message assigned to alert
+   * slot1 time alert is set to go off
+   * slot2 Days in boolean array (size 6, mon-sun) that alert is set to go off
+   * slot3 message assigned to alert
    */
   public Alerts(int t, boolean[] d, String m) {
     time = t;
@@ -30,7 +30,6 @@ public class Alerts {
    * Fri = 4, sat = 5, and sun =6
    * And returns if this alert is set for that day
    *
-   * @d the day in int format, 0-6, Mon-Sun
    * @return Whether the specified day should have this alert
    */
   public boolean isThisDay(int d) {
