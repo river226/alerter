@@ -1,5 +1,10 @@
 package com.isensix.alerter;
 
+/**
+ * This is the main class, builds out the app, and launces the GUI as well
+ * as all other components and classes that are necessary.
+ */
+
 // Java Imports
 import java.awt.AWTException;
 import java.awt.CheckboxMenuItem;
@@ -9,12 +14,7 @@ import java.awt.MenuItem;
 import java.awt.PopupMenu;
 import java.awt.SystemTray;
 import java.awt.TrayIcon;
-
-
-
-
 import javax.print.DocFlavor.URL;
-
 import javax.swing.ImageIcon;
 
 // Local Imports
