@@ -32,6 +32,8 @@ public class NotificationTray {
 		// TODO add Tray icon
 
 	Menu displayMenu = new Menu("Display");
+	AlertFile file; // Alert file
+
 	 // Construct the System Tray
     public NotificationTray () throws NoTrayAccessException {
     	if(test()) try { run();  // Builds the app
@@ -48,7 +50,9 @@ public class NotificationTray {
 
 	public void run() throws AWTException {
 
-        final PopupMenu popup = new PopupMenu();
+        file = new AlertFile();
+
+				final PopupMenu popup = new PopupMenu();
         final TrayIcon trayIcon = new TrayIcon(createImage("media/becon.gif", "tray icon"));
         final SystemTray tray = SystemTray.getSystemTray();
 
