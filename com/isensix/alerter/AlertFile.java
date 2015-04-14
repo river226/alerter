@@ -9,8 +9,10 @@ public class AlertFile {
     filename = alert.alt;
   }
 
-  public void readFile() {
+  public boolean readFile() {
+      if(!doesFileExit) return false;
 
+      
   }
 
   public boolean doesFileExist {
