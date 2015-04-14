@@ -28,63 +28,63 @@ import com.isensix.exceptions.NoTrayAccessException;
 @SuppressWarnings("unused")
 public class NotificationTray {
 
-		// code adapted from: https://docs.oracle.com/javase/tutorial/uiswing/misc/systemtray.html
-		// TODO add Tray icon
+	// code adapted from: https://docs.oracle.com/javase/tutorial/uiswing/misc/systemtray.html
+	// TODO add Tray icon
 
 	Menu displayMenu = new Menu("Display");
 	AlertFile file; // Alert file
 
-	 // Construct the System Tray
-    public NotificationTray () throws NoTrayAccessException {
-    	if(test()) try { run();  // Builds the app
-				} catch (AWTException e)
-					{ throw new NoTrayAccessException("Exception Thrown\n"  + e.getMessage()); }
-    	else throw new NoTrayAccessException("No System Support");
-    }
+	// Construct the System Tray
+	public NotificationTray () throws NoTrayAccessException {
+		if(test()) try { run();  // Builds the app
+		} catch (AWTException e)
+		{ throw new NoTrayAccessException("Exception Thrown\n"  + e.getMessage()); }
+		else throw new NoTrayAccessException("No System Support");
+	}
 
 
-    private boolean test() { // Tests if System allows access to the System Tray
+	private boolean test() { // Tests if System allows access to the System Tray
 		return SystemTray.isSupported();
 	}
 
 
 	public void run() throws AWTException {
 
-        file = new AlertFile();
+		file = new AlertFile();
 
-				final PopupMenu popup = new PopupMenu();
-        final TrayIcon trayIcon = new TrayIcon(createImage("media/becon.gif", "tray icon"));
-        final SystemTray tray = SystemTray.getSystemTray();
+		final PopupMenu popup = new PopupMenu();
+		final TrayIcon trayIcon = new TrayIcon(createImage("media/becon.gif", "tray icon"));
+		final SystemTray tray = SystemTray.getSystemTray();
 
-        // Create a pop-up menu components
-        CheckboxMenuItem enabled = new CheckboxMenuItem("Alerts enabled");
-        MenuItem alerts = new MenuItem("Programmed Alerts");
+		// Create a pop-up menu components
+		CheckboxMenuItem enabled = new CheckboxMenuItem("Alerts enabled");
+		MenuItem alerts = new MenuItem("Programmed Alerts");
 
 
-        //Add components to pop-up menu
-        popup.add(enabled);
-        popup.addSeparator();
-        displayMenu.add(alerts);
+		//Add components to pop-up menu
+		popup.add(enabled);
+		popup.addSeparator();
+		displayMenu.add(alerts);
 
-        trayIcon.setPopupMenu(popup);
+		trayIcon.setPopupMenu(popup);
 
-       	tray.add(trayIcon); //Throw AWTException
-  }
+		tray.add(trayIcon); //Throw AWTException
+	}
 
 	private Image createImage(String path, String description) {
-        java.net.URL imageURL = NotificationTray.class.getResource(path);
+		java.net.URL imageURL = NotificationTray.class.getResource(path);
 
-        if (imageURL == null) {
-            System.err.println("Resource not found: " + path);
-            return null;
-        } else {
-            return (new ImageIcon(imageURL, description)).getImage();
-        }
-  }
+		if (imageURL == null) {
+			System.err.println("Resource not found: " + path);
+			return null;
+		} else {
+			return (new ImageIcon(imageURL, description)).getImage();
+		}
+	}
 
 	private ArrayList<Alerts> alertCheck() {
 		// if(/* alerts file doesn't exist */)
-			enableGUI();
+		enableGUI();
 
 		return createAlerts();
 	}
