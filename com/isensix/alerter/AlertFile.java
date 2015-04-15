@@ -6,7 +6,10 @@ package com.isensix.alerter;
  */
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.nio.file.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +34,7 @@ public class AlertFile {
 
 		try {
 			lines = (ArrayList<String>)Files.readAllLines(path);
-		} catch (IOaException e) {
+		} catch (IOException e) {
 			return false;
 		}
 
@@ -41,20 +44,38 @@ public class AlertFile {
 	/**
 	 * Write alerts to the alert file
 	 */
-	public boolean writeFile(Alert a) {
-		if(!doesFileExist) // TODO generate file
-
-		String s = a.getTime();
-
-		for(int i = 0; i < 7; i++) {
-			if(a.isThisDay(i)) s = s + "::" + 1;
-			else s = s + "::" + 0;
+	public boolean writeFile(Alerts a) {
+		if(!doesFileExist()) {
+			File f = new File(filename);
+			try {
+				f.createNewFile();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-
-		s = s + "::" + a.getMessage();
-
-		// TODO Write to file
-
+		
+		String alertString = a.toString();
+		lines.add(alertString);
+		
+		PrintWriter writer;
+		
+		try {
+			writer = new PrintWriter(filename, "UTF-8");
+			
+			for(int i = 0; i < lines.size(); i++)
+				writer.println(lines.get(i));
+			
+			writer.close();
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		return true;
 	}
 
@@ -62,7 +83,7 @@ public class AlertFile {
 	 * Test if file exists
 	 */
 	public boolean doesFileExist() {
-		File f = new File(filename);
+		File f = new File(filename); // TODO Make s
 		return f.exists() && !f.isDirectory();
 	}
 
@@ -90,14 +111,15 @@ public class AlertFile {
 		if(alert == null || alert.isEmpty()) return null;
 
 		String[] a = alert.split("::"); // Split up at designated seperator
+		int t;
 
-		if(a.size() != 9 || a[0].length() != 4  || a[1].length() != 1
+		if(a.length != 9 || a[0].length() != 4  || a[1].length() != 1
 		 || a[2].length() != 1 || a[3].length() != 1 || a[4].length() != 1
-		 || a[5].length() != 1 || a[6].length() != 1 || a[7].length() != 1
-		 || a[8].isEmpty()) return null; // confirm that there are no invalid string lengths
+		 || a[5].length() != 1 || a[6].length() != 1 || a[7].length() != 1) 
+			return null; // confirm that there are no invalid string lengths
 
 		try { // generate time value
-			int t = a[0](int);
+			t = Integer.parseInt(a[0]);
 		} catch(Exception e) {
 			return null;
 		}
@@ -110,6 +132,6 @@ public class AlertFile {
 			else return null;
 		}
 
-		return Alerts(t, d, a[8]);
+		return new Alerts(t, d, a[8]);
 	}
 }

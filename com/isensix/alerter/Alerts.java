@@ -54,5 +54,21 @@ public class Alerts {
 	public String getMessage(){
 		return message;
 	}
+	
+	@Override
+	public String toString() {
+		String alertString = "";
+		
+		alertString = String.valueOf(this.getTime());
+
+		for(int i = 0; i < 7; i++) {
+			if(this.isThisDay(i)) alertString = alertString + "::" + 1;
+			else alertString = alertString + "::" + 0;
+		}
+
+		alertString = alertString + "::" + this.getMessage();
+		
+		return alertString;
+	}
 
 }
