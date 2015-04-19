@@ -1,7 +1,7 @@
 package com.isensix.alerter;
 
 import java.util.*;
-import javax.swing.Popup;
+import javax.swing.*;
 
 @SuppressWarnings("unused")
 public class Backend {
@@ -56,20 +56,7 @@ public class Backend {
 
 		@Override
 		public void run() {
-			// TODO Auto-generated method stub
-
-		}
-	}
-
-	private class AlertPopUp extends Popup {
-		// TODO build up Alert pop up
-
-		public AlertPopUp() {
-
-		}
-
-		public void launchPopUp(String m) {
-
+			JOptionPane.showMessageDialog(message, JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
 }
