@@ -10,7 +10,7 @@ public class AlertSettings {
 
 	/**
 	 * Launch the application.
-	 */
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -22,7 +22,7 @@ public class AlertSettings {
 				}
 			}
 		});
-	}
+	} */
 
 	/**
 	 * Create the application.
@@ -35,10 +35,19 @@ public class AlertSettings {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+
+		GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+		int monWidth = gd.getDisplayMode().getWidth();
+		int monHeight = gd.getDisplayMode().getHeight();
+
+		int winWidth = 450;
+		int winWidth = 300;
+
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(((monWidth/2)-(winWidth/2)), ((monHeight/2)-(winHeight/2)), // center window
+		 	winWidth, winHeight); // size window
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+
 	}
 
 }
