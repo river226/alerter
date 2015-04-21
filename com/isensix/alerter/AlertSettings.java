@@ -1,9 +1,12 @@
 package com.isensix.alerter;
 
 import java.awt.EventQueue;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
 
 import javax.swing.JFrame;
 
+@SuppressWarnings("unused")
 public class AlertSettings {
 
 	private JFrame frame;
@@ -41,7 +44,7 @@ public class AlertSettings {
 		int monHeight = gd.getDisplayMode().getHeight();
 
 		int winWidth = 450;
-		int winWidth = 300;
+		int winHeight = 300;
 
 		frame = new JFrame();
 		frame.setBounds(((monWidth/2)-(winWidth/2)), ((monHeight/2)-(winHeight/2)), // center window
