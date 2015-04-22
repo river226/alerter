@@ -45,7 +45,7 @@ public class AlertSettings {
 
 		frame = new JFrame();
 		frame.setBounds(((monWidth/2)-(winWidth/2)), ((monHeight/2)-(winHeight/2)), // center window
-		 	winWidth, winHeight); // size window
+		 	winWidth, winHeight); // size windowIa
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 	}
