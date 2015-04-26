@@ -9,11 +9,12 @@ import java.awt.EventQueue;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.Checkbox;
+import java.awt.GridLayout;
 
 import java.util.ArrayList;
 
-import javax.swing.event;
 import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JList;
@@ -38,11 +39,11 @@ public class AlertSettings {
 	// Define final values
 	private final JLabel aLabel = new JLabel("Alerts");
 	private final JLabel mLabel = new JLabel("Messages");
-	private final JLabel[] dayLabel = [new JLabel("M"),
+	private final JLabel[] dayLabel = {new JLabel("M"),
 		new JLabel("Tu"), new JLabel("W"), new JLabel("Tr"),
-		new JLabel("F"), new JLabel("Sa"), new JLabel("Su")];
-	private final JLabel[] timeLabel = [new JLabel("Time"),
-		new JLabel("am"), new JLabel("pm"), new JLabel("24hr")];
+		new JLabel("F"), new JLabel("Sa"), new JLabel("Su")};
+	private final JLabel[] timeLabel = {new JLabel("Time"),
+		new JLabel("am"), new JLabel("pm"), new JLabel("24hr")};
 
 	/**
 	 * Launch the application.
@@ -91,8 +92,8 @@ public class AlertSettings {
 
 	private void buildList() {
 		list = new JList<String>();
-		list.addListSelectionListener(new ListSelectionListiner(){
-			public valueChanged(ListSelectionEvent e) {
+		list.addListSelectionListener(new ListSelectionListener(){
+			public void valueChanged(ListSelectionEvent e) {
 				changeConfig();
 			}
 		});

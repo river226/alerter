@@ -5,12 +5,16 @@ package com.isensix.alerter;
  * It also produces require alerts
  */
 
+//import java.io.File;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+
+import java.nio.charset.Charset;
 import java.nio.file.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +23,7 @@ public class AlertFile {
 
 	private String filename;
 	private ArrayList<String> lines;
+	private Charset charset;
 
 	public AlertFile() {
 		filename = "alert.alt";
@@ -33,7 +38,7 @@ public class AlertFile {
 		Path path = Paths.get(filename);
 
 		try {
-			lines = (ArrayList<String>)Files.readAllLines(path);
+			lines = (ArrayList<String>) Files.readAllLines(path, charset);
 		} catch (IOException e) {
 			return false;
 		}
@@ -54,20 +59,20 @@ public class AlertFile {
 				e.printStackTrace();
 			}
 		}
-		
+
 		String alertString = a.toString();
 		lines.add(alertString);
-		
+
 		PrintWriter writer;
-		
+
 		try {
 			writer = new PrintWriter(filename, "UTF-8");
-			
+
 			for(int i = 0; i < lines.size(); i++)
 				writer.println(lines.get(i));
-			
+
 			writer.close();
-			
+
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -75,7 +80,7 @@ public class AlertFile {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return true;
 	}
 
@@ -114,8 +119,8 @@ public class AlertFile {
 		int t;
 
 		if(a.length != 9 || a[0].length() != 4  || a[1].length() != 1
-		 || a[2].length() != 1 || a[3].length() != 1 || a[4].length() != 1
-		 || a[5].length() != 1 || a[6].length() != 1 || a[7].length() != 1) 
+				|| a[2].length() != 1 || a[3].length() != 1 || a[4].length() != 1
+				|| a[5].length() != 1 || a[6].length() != 1 || a[7].length() != 1) 
 			return null; // confirm that there are no invalid string lengths
 
 		try { // generate time value
