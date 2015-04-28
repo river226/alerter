@@ -5,6 +5,7 @@ package com.isensix.alerter;
  * and a config area that is used to edit and add alerts.
  */
 
+import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
@@ -30,7 +31,7 @@ public class AlertSettings {
 	private JFrame frame;
 	private JList<String> list;
 	private ArrayList<Alerts> alerts;
-	private GroupLayout layout;
+	private GridLayout layout;
 	private Checkbox[] dayCheck;
 	private JButton add;
 	private JTextField messageBox;
@@ -47,7 +48,7 @@ public class AlertSettings {
 
 	/**
 	 * Launch the application.
-
+	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -59,7 +60,14 @@ public class AlertSettings {
 				}
 			}
 		});
-	} */
+	} 
+	
+	/**
+	 * Create the application.
+	 */
+	public AlertSettings() {
+		initialize();
+	}
 
 	/**
 	 * Create the application.
@@ -79,28 +87,46 @@ public class AlertSettings {
 		int monHeight = gd.getDisplayMode().getHeight();
 
 		int winWidth = 450;
-		int winHeight = 300;
+		int winHeight = 500;
 
 		frame = new JFrame();
 		frame.setBounds(((monWidth/2)-(winWidth/2)), ((monHeight/2)-(winHeight/2)), // center window
 		 	winWidth, winHeight); // size windowIa
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-		this.buildList();
+		buildGridLayout();
 
 	}
 
-	private void buildList() {
+	private Component buildList() {
 		list = new JList<String>();
 		list.addListSelectionListener(new ListSelectionListener(){
 			public void valueChanged(ListSelectionEvent e) {
 				changeConfig();
 			}
 		});
+		return aLabel;
 	}
 
-	private GridLayout buildGridLayout() {
-		// TODO Build the layout
+	private void buildGridLayout() {
+		layout = new GridLayout(4, 1, 10, 10);
+		layout.addLayoutComponent("Alert List", buildList()); // Alerts List
+		layout.addLayoutComponent("Message", buildMessagebox()); // Alert Message
+		layout.addLayoutComponent("Days", buildDays()); // Mon - Sun
+		layout.addLayoutComponent("Time", buildTime()); // Time, Submit
+	}
+
+	private Component buildTime() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	private Component buildDays() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	private Component buildMessagebox() {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
