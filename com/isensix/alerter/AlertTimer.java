@@ -47,7 +47,7 @@ class AlertTimer extends TimerTask {
 
 	private Calendar setTime(Calendar c, int t) {
 		c.set(Calendar.HOUR_OF_DAY, t/100);
-		c.set(Calendar.MINUTE, (t - ((((int) (t/100)))*100)));
+		c.set(Calendar.MINUTE, t%100);
 		return c;
 	}
 
