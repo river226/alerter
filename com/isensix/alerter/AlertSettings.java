@@ -7,6 +7,7 @@ package com.isensix.alerter;
 
 import java.awt.Component;
 import java.awt.EventQueue;
+import java.awt.FlowLayout;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.Checkbox;
@@ -17,12 +18,18 @@ import java.util.ArrayList;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import javax.swing.ButtonGroup;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JLabel;
 import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.GroupLayout;
+import javax.swing.SpinnerNumberModel;
 
 @SuppressWarnings("unused")
 public class AlertSettings {
@@ -32,19 +39,20 @@ public class AlertSettings {
 	private JList<String> list;
 	private ArrayList<Alerts> alerts;
 	private GridLayout layout;
-	private Checkbox[] dayCheck;
+	private ArrayList<JCheckBox> dayCheck;
 	private JButton add;
 	private JTextField messageBox;
-	private JTextField timeBox;
+	private JSpinner timeBox; // Box set to accept
+	private SpinnerNumberModel timeSpinner; // Spinner Settings for JSpinner
+	
+	private ArrayList<JRadioButton> timeRadio;
+	private ButtonGroup timeGroup;
 
 	// Define final values
 	private final JLabel aLabel = new JLabel("Alerts");
 	private final JLabel mLabel = new JLabel("Messages");
-	private final JLabel[] dayLabel = {new JLabel("M"),
-		new JLabel("Tu"), new JLabel("W"), new JLabel("Tr"),
-		new JLabel("F"), new JLabel("Sa"), new JLabel("Su")};
-	private final JLabel[] timeLabel = {new JLabel("Time"),
-		new JLabel("am"), new JLabel("pm"), new JLabel("24hr")};
+	private final String[] dayLabel = {"M", "Tu", "W", "Tr", "F", "Sa", "Su"};
+	private final String[] timeLabel = {"Time", "am", "pm", "24hr"};
 
 	/**
 	 * Launch the application.
@@ -116,18 +124,52 @@ public class AlertSettings {
 	}
 
 	private Component buildTime() {
-		// TODO Auto-generated method stub
-		return null;
+		JPanel time = new JPanel(new FlowLayout());
+		timeRadio = new ArrayList<JRadioButton>();
+		timeSpinner = new SpinnerNumberModel(0, 0, 2400, 1);
+		timeBox = new JSpinner(timeSpinner);
+		
+		timeRadio.add(new JRadioButton(timeLabel[1], false));
+		timeRadio.add(new JRadioButton(timeLabel[2], false));
+		timeRadio.add(new JRadioButton(timeLabel[3], true));
+		
+		time.add(new JLabel(timeLabel[0]));
+		time.add(timeBox);
+		time.add(timeRadio.get(0));
+		time.add(timeRadio.get(1));
+		time.add(timeRadio.get(2));
+		
+		return time;
 	}
 
 	private Component buildDays() {
 		// TODO Auto-generated method stub
-		return null;
+		JPanel days = new JPanel(new FlowLayout());
+		dayCheck = new ArrayList<JCheckBox>();
+		
+		dayCheck.add(new JCheckBox(dayLabel[0]));
+		dayCheck.add(new JCheckBox(dayLabel[1]));
+		dayCheck.add(new JCheckBox(dayLabel[2]));
+		dayCheck.add(new JCheckBox(dayLabel[3]));
+		dayCheck.add(new JCheckBox(dayLabel[4]));
+		dayCheck.add(new JCheckBox(dayLabel[5]));
+		dayCheck.add(new JCheckBox(dayLabel[6]));
+		
+		days.add(dayCheck.get(0));
+		days.add(dayCheck.get(1));
+		days.add(dayCheck.get(2));
+		days.add(dayCheck.get(3));
+		days.add(dayCheck.get(4));
+		days.add(dayCheck.get(5));
+		days.add(dayCheck.get(6));
+		
+		return days;
 	}
 
 	private Component buildMessagebox() {
 		// TODO Auto-generated method stub
-		return null;
+		JPanel mBox = new JPanel(new FlowLayout());
+		return mBox;
 	}
 
 	private void changeConfig() {
