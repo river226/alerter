@@ -15,14 +15,12 @@ import java.awt.PopupMenu;
 import java.awt.SystemTray;
 import java.awt.TrayIcon;
 import java.util.ArrayList;
+import javax.swing.JFrame;
 
 import javax.print.DocFlavor.URL;
 import javax.swing.ImageIcon;
 
 // local import
-
-
-
 import com.isensix.exceptions.NoTrayAccessException;
 
 @SuppressWarnings("unused")
@@ -33,6 +31,8 @@ public class NotificationTray {
 
 	Menu displayMenu = new Menu("Display");
 	AlertFile file; // Alert file
+	AlertSettings set; // GUI to add and edit alerts
+	ArrayList<Alerts> alerts = new ArrayList<Alerts>();
 
 	// Construct the System Tray
 	public NotificationTray () throws NoTrayAccessException {
@@ -82,20 +82,18 @@ public class NotificationTray {
 		}
 	}
 
-	private ArrayList<Alerts> alertCheck() {
-		// if(/* alerts file doesn't exist */)
-		enableGUI();
-
-		return createAlerts();
+	private boolean alertCheck() {
+		return file.doesFileExist();
 	}
 
 	private void enableGUI() {
-		// Build GUI to add alerts to alert file
+		set = new AlertSettings(file, alerts);
+		set.setVisible(true);
 	}
 
 	private ArrayList<Alerts> createAlerts() {
-		// Read in alert file, and build alerts
-		return null;
+		if(!alertCheck()) enableGUI();
+		return file.generateAlerts();
 	}
 
 }

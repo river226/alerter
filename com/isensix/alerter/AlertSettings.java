@@ -32,8 +32,12 @@ import javax.swing.GroupLayout;
 import javax.swing.SpinnerNumberModel;
 
 @SuppressWarnings("unused")
-public class AlertSettings {
+public class AlertSettings extends JFrame{
 
+	/**
+	 * make eclipse happy
+	 */
+	private static final long serialVersionUID = 1L;
 	// Define classes that can change
 	private JFrame frame;
 	private JList<String> list;
@@ -56,24 +60,26 @@ public class AlertSettings {
 
 	/**
 	 * Launch the application.
-	 */
+	 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AlertSettings window = new AlertSettings();
+
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
-	} 
+	} */
 	
 	/**
 	 * Create the application.
+	 * @param a 
 	 */
-	public AlertSettings() {
+	public AlertSettings(AlertFile f, ArrayList<Alerts> a) {
+		AlertFile file = f;
 		initialize();
 	}
 
@@ -101,6 +107,7 @@ public class AlertSettings {
 		frame.setBounds(((monWidth/2)-(winWidth/2)), ((monHeight/2)-(winHeight/2)), // center window
 		 	winWidth, winHeight); // size windowIa
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setLayout(layout);
 		buildGridLayout();
 
 	}
@@ -112,6 +119,7 @@ public class AlertSettings {
 				changeConfig();
 			}
 		});
+		//list.add(, comp)
 		return aLabel;
 	}
 
@@ -167,8 +175,12 @@ public class AlertSettings {
 	}
 
 	private Component buildMessagebox() {
-		// TODO Auto-generated method stub
 		JPanel mBox = new JPanel(new FlowLayout());
+		messageBox = new JTextField();
+		
+		mBox.add(mLabel);
+		mBox.add(messageBox);
+		
 		return mBox;
 	}
 
