@@ -1,4 +1,4 @@
-package com.isensix.alerter;
+package com.isensix.alerter.backend;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -8,7 +8,9 @@ import java.util.TimerTask;
 
 import javax.swing.JOptionPane;
 
-@SuppressWarnings("unused")
+import com.isensix.alerter.*;
+
+@SuppressWarnings("unused") 
 class AlertTimer extends TimerTask {
 
 	private Calendar next;

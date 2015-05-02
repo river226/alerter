@@ -20,11 +20,13 @@ import javax.swing.JFrame;
 import javax.print.DocFlavor.URL;
 import javax.swing.ImageIcon;
 
+import com.isensix.alerter.GUI.AlertSettings;
+import com.isensix.alerter.backend.AlertFile;
 // local import
 import com.isensix.exceptions.NoTrayAccessException;
 
 @SuppressWarnings("unused")
-public class NotificationTray {
+public class Alerter {
 
 	// code adapted from: https://docs.oracle.com/javase/tutorial/uiswing/misc/systemtray.html
 	// TODO add Tray icon
@@ -35,7 +37,7 @@ public class NotificationTray {
 	ArrayList<Alerts> alerts = new ArrayList<Alerts>();
 
 	// Construct the System Tray
-	public NotificationTray () throws NoTrayAccessException {
+	public Alerter () throws NoTrayAccessException {
 		if(test()) try { run();  // Builds the app
 		} catch (AWTException e)
 		{ throw new NoTrayAccessException("Exception Thrown\n"  + e.getMessage()); }
@@ -72,7 +74,7 @@ public class NotificationTray {
 	}
 
 	private Image createImage(String path, String description) {
-		java.net.URL imageURL = NotificationTray.class.getResource(path);
+		java.net.URL imageURL = Alerter.class.getResource(path);
 
 		if (imageURL == null) {
 			System.err.println("Resource not found: " + path);

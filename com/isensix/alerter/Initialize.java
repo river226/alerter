@@ -7,12 +7,15 @@ package com.isensix.alerter;
 import com.isensix.exceptions.*;
 
 @SuppressWarnings("unused")
-public class Main {
+public class Initialize {
 
 	/**
 	 * Main class, uses methods to build, catches exceptions to 
 	 * close program gracefully
 	 */
+	
+	private static Alerter prog;
+	
 	public static void main(String[] args) {
 		try {
 			buildNotificationTray();
@@ -28,7 +31,7 @@ public class Main {
 	 */
 
 	private static void buildNotificationTray() throws NoTrayAccessException {
-		NotificationTray prog = new NotificationTray();
+		prog = new Alerter();
 	}
 
 }

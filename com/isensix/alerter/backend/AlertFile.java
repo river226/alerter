@@ -1,4 +1,4 @@
-package com.isensix.alerter;
+package com.isensix.alerter.backend;
 
 /**
  * This class handles reading and writing files in the correct format
@@ -17,6 +17,8 @@ import java.nio.file.*;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.isensix.alerter.Alerts;
 
 @SuppressWarnings("unused")
 public class AlertFile {

@@ -1,4 +1,4 @@
-package com.isensix.alerter;
+package com.isensix.alerter.GUI;
 
 /**
  * This class builds a basic GUI with a List area listing all current alerts
@@ -30,6 +30,9 @@ import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.GroupLayout;
 import javax.swing.SpinnerNumberModel;
+
+import com.isensix.alerter.Alerts;
+import com.isensix.alerter.backend.AlertFile;
 
 @SuppressWarnings("unused")
 public class AlertSettings extends JFrame{

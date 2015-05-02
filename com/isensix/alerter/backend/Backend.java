@@ -1,8 +1,10 @@
-package com.isensix.alerter;
+package com.isensix.alerter.backend;
 
 import java.util.*;
 
 import javax.swing.*;
+
+import com.isensix.alerter.*;
 
 @SuppressWarnings("unused")
 public class Backend {
