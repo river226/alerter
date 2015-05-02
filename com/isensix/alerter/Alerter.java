@@ -31,48 +31,65 @@ public class Alerter {
 	// code adapted from: https://docs.oracle.com/javase/tutorial/uiswing/misc/systemtray.html
 	// TODO add Tray icon
 
-	Menu displayMenu = new Menu("Display");
-	AlertFile file; // Alert file
-	AlertSettings set; // GUI to add and edit alerts
-	ArrayList<Alerts> alerts = new ArrayList<Alerts>();
+	// Flexible Variables
+	private Menu displayMenu = new Menu("Display");
+	private AlertFile file; // Alert file
+	private AlertSettings set; // GUI to add and edit alerts
+	private ArrayList<Alerts> alerts = new ArrayList<Alerts>();
+	
+	// Final Global Variables
+	private final PopupMenu popup = new PopupMenu();
+	private final TrayIcon trayIcon = new TrayIcon(createImage("media/becon.gif", "tray icon"));
+	private final SystemTray tray = SystemTray.getSystemTray();
 
-	// Construct the System Tray
+	/**
+	 * This Constructor manages exceptions for the program, and launches the program
+	 * @throws NoTrayAccessException
+	 */
 	public Alerter () throws NoTrayAccessException {
-		if(test()) try { run();  // Builds the app
-		} catch (AWTException e)
-		{ throw new NoTrayAccessException("Exception Thrown\n"  + e.getMessage()); }
-		else throw new NoTrayAccessException("No System Support");
+		if(test()) try { 
+			launch();  // Launch the Application; Build System Tray
+		} catch (AWTException e) { // Catch Exception
+			throw new NoTrayAccessException("Exception Thrown\n"  + e.getMessage()); 
+		} else { // The System Tray is not supported
+			throw new NoTrayAccessException("No System Support");
+		}
 	}
 
-
+	/**
+	 * Test if the system allows you to access to the System Tray
+	 * @return boolean telling you if system allows access to System Tray
+	 */
 	private boolean test() { // Tests if System allows access to the System Tray
 		return SystemTray.isSupported();
 	}
 
-
-	public void run() throws AWTException {
+	/**
+	 * This launches and builds the Application
+	 * @throws AWTException
+	 */
+	public void launch() throws AWTException {
 
 		file = new AlertFile();
-
-		final PopupMenu popup = new PopupMenu();
-		final TrayIcon trayIcon = new TrayIcon(createImage("media/becon.gif", "tray icon"));
-		final SystemTray tray = SystemTray.getSystemTray();
 
 		// Create a pop-up menu components
 		CheckboxMenuItem enabled = new CheckboxMenuItem("Alerts enabled");
 		MenuItem alerts = new MenuItem("Programmed Alerts");
 
-
 		//Add components to pop-up menu
 		popup.add(enabled);
 		popup.addSeparator();
 		displayMenu.add(alerts);
-
 		trayIcon.setPopupMenu(popup);
-
 		tray.add(trayIcon); //Throw AWTException
 	}
 
+	/**
+	 * Manages creating the Tray Icon
+	 * @param path - File path for the Tray Icon
+	 * @param description - Describes the icon being built
+	 * @return Image file of the Tray Icon
+	 */
 	private Image createImage(String path, String description) {
 		java.net.URL imageURL = Alerter.class.getResource(path);
 
@@ -84,15 +101,27 @@ public class Alerter {
 		}
 	}
 
+	/**
+	 * Checks if there is any alert file saved
+	 * @return true if there is an alert file
+	 */
 	private boolean alertCheck() {
 		return file.doesFileExist();
 	}
 
+	/**
+	 * Build and launch the GUI to have change settings;
+	 * edit alerts
+	 */
 	private void enableGUI() {
 		set = new AlertSettings(file, alerts);
 		set.setVisible(true);
 	}
 
+	/**
+	 * Launches GUI if there are no Alerts, and generate all Alerts
+	 * @return ArrayList containing built alerts
+	 */
 	private ArrayList<Alerts> createAlerts() {
 		if(!alertCheck()) enableGUI();
 		return file.generateAlerts();
