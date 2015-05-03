@@ -3,6 +3,8 @@ package com.isensix.alerter;
 /**
  * This is the main class, builds out the app, and launces the GUI as well
  * as all other components and classes that are necessary.
+ * 
+ * @author river226
  */
 
 // Java Imports
@@ -126,5 +128,4 @@ public class Alerter {
 		if(!alertCheck()) enableGUI();
 		return file.generateAlerts();
 	}
-
 }

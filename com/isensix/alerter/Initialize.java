@@ -2,6 +2,8 @@ package com.isensix.alerter;
 
 /**
  * This class builds and launches the App.
+ * 
+ * @author river226
  */
 
 import com.isensix.exceptions.*;

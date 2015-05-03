@@ -1,8 +1,9 @@
 package com.isensix.alerter;
 
 /**
- * This class defines the characteristics of alerts that are
- * implemented by this program. 
+ * This is a Simple Object class defining alerts for the Alerter program
+ * 
+ * @author river226
  */
 
 public class Alerts {
@@ -10,51 +11,48 @@ public class Alerts {
 	private int time; // 24hour time, xxxx format
 	private boolean[] day; // size 6, days mon-sun
 	private String message; // Alert Message
-
+	
 	/**
-	 * Takes in values to build the alert
-	 *
-	 * slot1 time alert is set to go off
-	 * slot2 Days in boolean array (size 6, mon-sun) that alert is set to go off
-	 * slot3 message assigned to alert
+	 * Alert Constructor
+	 * @param t - time value in 24 hour format
+	 * @param d - Boolean array size 7, that runs Mon-Sun. Specifies if a day has an alert
+	 * @param m - Message displayed when alert goes off
 	 */
 	public Alerts(int t, boolean[] d, String m) {
 		time = t;
 		day = d;
 		message = m;
 	}
-
+	
 	/**
-	 * This method takes an int value for the day of the week:
+	 * This Method manages confirming if a day has an alert
+	 * @param d - int value defining day:
 	 * mon = 0, tues = 1, wed = 2, thurs = 3,
 	 * Fri = 4, sat = 5, and sun =6
-	 * And returns if this alert is set for that day
-	 *
-	 * @return Whether the specified day should have this alert
+	 * @return boolean value confirming if specified day has an alert
 	 */
 	public boolean isThisDay(int d) {
 		return day[d];
 	}
 
+
 	/**
-	 * This method returns the time alert is set for
-	 * @return 
-	 *
-	 * @return time this alert is set to go off
+	 * @return the Time value for the this alert
 	 */
 	public int getTime() {
 		return time;
 	}
 
 	/**
-	 * This method returns the message for this alert
-	 *
-	 * @return Alert Message
+	 * @return returns the alert message of this object
 	 */
 	public String getMessage(){
 		return message;
 	}
 	
+	/**
+	 * @return A String representation of this object
+	 */
 	@Override
 	public String toString() {
 		String alertString = "";

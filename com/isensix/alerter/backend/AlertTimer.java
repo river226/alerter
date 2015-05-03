@@ -1,13 +1,20 @@
 package com.isensix.alerter.backend;
 
+/**
+ * This class builds timers to launch alerts
+ * 
+ * @author river226
+ */
+
+// Util
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Timer;
 import java.util.TimerTask;
-
+//Swing
 import javax.swing.JOptionPane;
-
+//Local
 import com.isensix.alerter.*;
 
 @SuppressWarnings("unused") 
@@ -16,11 +23,20 @@ class AlertTimer extends TimerTask {
 	private Calendar next;
 	private String message;
 
+	/**
+	 * 
+	 * @param n
+	 * @param m
+	 */
 	private AlertTimer(Calendar n, String m) {
 		next = n;
 		message = m;
 	}
 
+	/**
+	 * 
+	 * @param al
+	 */
 	public AlertTimer(Alerts al) {
 		ArrayList<Timer> timers = new ArrayList<Timer>();
 		ArrayList<Calendar> dates = new ArrayList<Calendar>();
@@ -40,19 +56,33 @@ class AlertTimer extends TimerTask {
 		}
 	}
 
-
+	/**
+	 * 
+	 * @param day
+	 * @param time
+	 * @return
+	 */
 	private Calendar setAlertDate(int day, int time) {
 		GregorianCalendar date = new GregorianCalendar();
 		date.set(Calendar.DAY_OF_WEEK, day);
 		return setTime(date, time);
 	}
 
+	/**
+	 * 
+	 * @param c
+	 * @param t
+	 * @return
+	 */
 	private Calendar setTime(Calendar c, int t) {
 		c.set(Calendar.HOUR_OF_DAY, t/100);
 		c.set(Calendar.MINUTE, t%100);
 		return c;
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public void run() {
 		JOptionPane.showMessageDialog(null, message, "alert", JOptionPane.INFORMATION_MESSAGE);
