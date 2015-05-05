@@ -32,7 +32,7 @@ public class AlertFile {
 	}
 
 	/**
-	 * Read in the file and seperate into several lines
+	 * Read in the file and separate into several lines
 	 */
 	private boolean readFile() {
 		if(!doesFileExist()) return false;
