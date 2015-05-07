@@ -41,7 +41,7 @@ public class Alerter {
 	
 	// Final Global Variables
 	private final PopupMenu popup = new PopupMenu();
-	private final TrayIcon trayIcon = new TrayIcon(createImage("media/becon.gif", "tray icon"));
+	private final TrayIcon trayIcon = new TrayIcon(createImage("media/alert.gif", "tray icon"));
 	private final SystemTray tray = SystemTray.getSystemTray();
 
 	/**
@@ -51,6 +51,7 @@ public class Alerter {
 	public Alerter () throws NoTrayAccessException {
 		if(test()) try { 
 			launch();  // Launch the Application; Build System Tray
+			
 		} catch (AWTException e) { // Catch Exception
 			throw new NoTrayAccessException("Exception Thrown\n"  + e.getMessage()); 
 		} else { // The System Tray is not supported
@@ -71,7 +72,8 @@ public class Alerter {
 	 * @throws AWTException
 	 */
 	public void launch() throws AWTException {
-
+		System.out.println("launch");
+		
 		file = new AlertFile();
 
 		// Create a pop-up menu components

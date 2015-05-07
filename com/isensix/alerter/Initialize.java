@@ -22,8 +22,9 @@ public class Initialize {
 		try {
 			buildNotificationTray();
 		} catch (NoTrayAccessException e) {
-			// Do nothing for now
+			System.out.println(e.toString());
 		} finally {
+			System.out.println("Ending program");
 			System.exit(0);
 		}
 	}
@@ -33,7 +34,9 @@ public class Initialize {
 	 */
 
 	private static void buildNotificationTray() throws NoTrayAccessException {
+		System.out.println("start");
 		prog = new Alerter();
+		System.out.println("done");
 	}
 
 }
