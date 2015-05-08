@@ -28,7 +28,7 @@ import com.isensix.alerter.backend.AlertFile;
 import com.isensix.exceptions.NoTrayAccessException;
 
 @SuppressWarnings("unused")
-public class Alerter {
+public class Alerter implements Runnable {
 
 	// code adapted from: https://docs.oracle.com/javase/tutorial/uiswing/misc/systemtray.html
 	// TODO add Tray icon
@@ -49,12 +49,7 @@ public class Alerter {
 	 * @throws NoTrayAccessException
 	 */
 	public Alerter () throws NoTrayAccessException {
-		if(test()) try { 
-			launch();  // Launch the Application; Build System Tray
-			
-		} catch (AWTException e) { // Catch Exception
-			throw new NoTrayAccessException("Exception Thrown\n"  + e.getMessage()); 
-		} else { // The System Tray is not supported
+		if(!test()) { // The System Tray is not supported
 			throw new NoTrayAccessException("No System Support");
 		}
 	}
@@ -70,8 +65,9 @@ public class Alerter {
 	/**
 	 * This launches and builds the Application
 	 * @throws AWTException
+	 * @throws InterruptedException 
 	 */
-	public void launch() throws AWTException {
+	public void launch() throws AWTException, InterruptedException {
 		System.out.println("launch");
 		
 		file = new AlertFile();
@@ -85,7 +81,7 @@ public class Alerter {
 		popup.addSeparator();
 		displayMenu.add(alerts);
 		trayIcon.setPopupMenu(popup);
-		tray.add(trayIcon); //Throw AWTException
+		tray.add(trayIcon);
 	}
 
 	/**
@@ -129,5 +125,17 @@ public class Alerter {
 	private ArrayList<Alerts> createAlerts() {
 		if(!alertCheck()) enableGUI();
 		return file.generateAlerts();
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		try {
+			System.out.println("run");
+			launch();
+		} catch (AWTException | InterruptedException e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.toString());
+		}
 	}
 }

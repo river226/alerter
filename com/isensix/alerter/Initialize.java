@@ -21,6 +21,7 @@ public class Initialize {
 	public static void main(String[] args) {
 		try {
 			buildNotificationTray();
+			prog.run();
 		} catch (NoTrayAccessException e) {
 			System.out.println(e.toString());
 		} finally {
