@@ -133,6 +133,7 @@ public class Alerter implements Runnable {
 		try {
 			System.out.println("run");
 			launch();
+			 createAndShowGUI();
 		} catch (AWTException | InterruptedException e) {
 			// TODO Auto-generated catch block
 			System.out.println(e.toString());
