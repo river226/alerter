@@ -1,7 +1,7 @@
-package com.isensix.exceptions;
+package ain.tolva.alerter.exceptions;
 
 public class NoTrayAccessException extends Exception {
-
+	
 	/**
 	 * Keep Eclipse happy
 	 */

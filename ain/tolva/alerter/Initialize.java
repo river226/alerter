@@ -6,7 +6,7 @@ package ain.tolva.alerter;
  * @author river226
  */
 
-import com.isensix.exceptions.*;
+import ain.tolva.alerter.exceptions.*;
 
 public class Initialize {
 

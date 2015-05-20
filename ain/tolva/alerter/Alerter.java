@@ -29,7 +29,7 @@ import javax.swing.ImageIcon;
 import ain.tolva.alerter.GUI.AlertSettings;
 import ain.tolva.alerter.backend.AlertFile;
 // local import
-import com.isensix.exceptions.NoTrayAccessException;
+import ain.tolva.alerter.exceptions.*;
 
 @SuppressWarnings("unused")
 public class Alerter extends Thread {
