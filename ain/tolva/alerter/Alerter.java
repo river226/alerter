@@ -29,6 +29,7 @@ import javax.swing.ImageIcon;
 import ain.tolva.alerter.GUI.AlertSettings;
 import ain.tolva.alerter.backend.AlertFile;
 import ain.tolva.alerter.backend.NotificationPane;
+import ain.tolva.alerter.backend.PingTest;
 // local import
 import ain.tolva.alerter.exceptions.*;
 
@@ -43,6 +44,12 @@ public class Alerter extends Thread {
 	private AlertFile file; // Alert file
 	private AlertSettings set; // GUI to add and edit alerts
 	private ArrayList<Alerts> alerts = new ArrayList<Alerts>();
+	private PingTest autoPing;
+	
+	// Testing Variables
+	String[][] testarray = new String{
+		{"google", "www.google.com"}
+	};
 
 	// Final Global Variables
 	private final PopupMenu popup = new PopupMenu();
@@ -110,9 +117,8 @@ public class Alerter extends Thread {
 			}
 		});
 		autoPingItem.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) { 
-				NotificationPane n = new NotificationPane(NotificationPane.ALERT, "This is a Test", "Test");
-				n.run();
+			public void actionPerformed(ActionEvent e) {
+				autoPing.run();
 			}
 		});
 
