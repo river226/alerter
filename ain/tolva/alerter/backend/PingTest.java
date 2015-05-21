@@ -4,12 +4,10 @@ import java.net.InetAddress;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-import javax.swing.JOptionPane;
-
 // Extend from thread instead
 public class PingTest implements Runnable {
 	
-	static PopUp[] popup;
+	static NotificationPane[] popup;
 	static String[][] id;
 	static Calendar cal;
 	static SimpleDateFormat sdf;
@@ -18,11 +16,12 @@ public class PingTest implements Runnable {
 	public PingTest(String[][] addr) {
 		id = addr;
 		sdf = new SimpleDateFormat("MM/dd HH:mm");
-		popup = new PopUp[addr.length];
+		popup = new NotificationPane[addr.length];
 		notification = new Thread[addr.length];
 
-		for(int i = 0; i < popup.length; i++) {
-			popup[i] = new PopUp(id[i][0]);
+		for(int i = 0; i < addr.length; i++) {
+			String message =  "Unable to connect to " + id[i][0];
+			popup[i] = new NotificationPane(NotificationPane.ALERT, message, "No Connectivity");
 			notification[i] = new Thread(popup[i]);
 		}
 
@@ -75,21 +74,6 @@ public class PingTest implements Runnable {
 		// TODO: Write Result to file.
 		System.out.print(result);
 		return true;
-	}
-
-	private class PopUp implements Runnable {
-
-		String name = "";
-
-		public PopUp(String n) {
-			name = n;
-		}
-
-		@Override
-		public void run() {
-			JOptionPane.showMessageDialog(null, "Cannot connect to " + name, "No Connectivity", JOptionPane.INFORMATION_MESSAGE);
-		}
-
 	}
 	
 }

@@ -7,3 +7,7 @@ TODO:
 
 - Implement Logging
 - Complete Settings Panel
+- Implement Auto Ping
+- Implement Manual Ping
+- Debug
+- Streamline Threads

@@ -28,6 +28,7 @@ import javax.swing.ImageIcon;
 
 import ain.tolva.alerter.GUI.AlertSettings;
 import ain.tolva.alerter.backend.AlertFile;
+import ain.tolva.alerter.backend.NotificationPane;
 // local import
 import ain.tolva.alerter.exceptions.*;
 
@@ -104,14 +105,14 @@ public class Alerter extends Thread {
 		// Ping Menu
 		ipPingItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) { 
-				trayIcon.displayMessage("Sun TrayIcon Demo",
-						"This is an error message", TrayIcon.MessageType.ERROR);
+				NotificationPane n = new NotificationPane(NotificationPane.ALERT, "This is a Test", "Test");
+				n.run();
 			}
 		});
 		autoPingItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) { 
-				trayIcon.displayMessage("Sun TrayIcon Demo",
-						"This is also an error message", TrayIcon.MessageType.ERROR);
+				NotificationPane n = new NotificationPane(NotificationPane.ALERT, "This is a Test", "Test");
+				n.run();
 			}
 		});
 
@@ -119,8 +120,8 @@ public class Alerter extends Thread {
 		// Alerter Menu
 		amItem1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) { 
-				trayIcon.displayMessage("Sun TrayIcon Demo",
-						"This is also an error message", TrayIcon.MessageType.ERROR);
+				NotificationPane n = new NotificationPane(NotificationPane.ALERT, "This is a Test", "Test");
+				n.run();
 			}
 		});
 		
