@@ -45,10 +45,10 @@ public class Alerter extends Thread {
 	private AlertSettings set; // GUI to add and edit alerts
 	private ArrayList<Alerts> alerts = new ArrayList<Alerts>();
 	private PingTest autoPing;
-	
+
 	// Testing Variables
-	String[][] testarray = new String{
-		{"google", "www.google.com"}
+	String[][] testarray = {
+			{"google", "www.google.com"}
 	};
 
 	// Final Global Variables
@@ -130,14 +130,14 @@ public class Alerter extends Thread {
 				n.run();
 			}
 		});
-		
+
 		// Exit
 		exitItem.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                tray.remove(trayIcon);
-                System.exit(0);
-            }
-        });
+			public void actionPerformed(ActionEvent e) {
+				tray.remove(trayIcon);
+				System.exit(0);
+			}
+		});
 	}
 
 	/**
