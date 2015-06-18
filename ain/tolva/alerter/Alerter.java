@@ -33,6 +33,9 @@ import ain.tolva.alerter.backend.PingTest;
 // local import
 import ain.tolva.alerter.exceptions.*;
 
+import com.glavsoft.viewer.Viewer;
+import com.glavsoft.viewer.cli.*;
+
 @SuppressWarnings("unused")
 public class Alerter extends Thread {
 
@@ -92,12 +95,15 @@ public class Alerter extends Thread {
 		Menu netMenu = new Menu("Network");
 		final MenuItem ipPingItem = new MenuItem("Ping");
 		final MenuItem autoPingItem = new MenuItem("Auto Ping");
+		final MenuItem openVNC = new MenuItem("Open VNC");
 		MenuItem exitItem = new MenuItem("Exit");
 
 		//Add components to popup menu
 		//popup.add(ccItem);
 		popup.add(alertMenu);
 		alertMenu.add(amItem1);
+		popup.addSeparator();
+		popup.add(openVNC);
 		popup.addSeparator();
 		popup.add(netMenu);
 		netMenu.add(ipPingItem);
@@ -108,6 +114,12 @@ public class Alerter extends Thread {
 		tray.add(trayIcon);
 
 		// TODO implement action listeners
+		
+		openVNC.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) { 
+				Viewer vn = new Viewer();
+			}
+		});
 
 		// Ping Menu
 		ipPingItem.addActionListener(new ActionListener() {
