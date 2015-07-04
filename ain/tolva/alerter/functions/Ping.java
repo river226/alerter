@@ -12,32 +12,34 @@ public abstract class Ping extends Thread {
 		
 	}
 
-	static boolean[] test;
-	static String[][] id;
+	static boolean test;
+	static String name;
+	static String id;
 	static Calendar cal;
 	static SimpleDateFormat sdf;
 	
-	public Ping(String[][] addr) {
-		id = addr;
-		sdf = new SimpleDateFormat("MM/dd HH:mm");
-		test = new boolean[addr[0].length];
+	public Ping(String n, String a) {
+		// Assign name, and Address
+		name = n;
+		id = a;
 		
-		for(int i = 0; i < test.length; i++)
-			test[i] = true;
+		// Magic Values
+		sdf = new SimpleDateFormat("MM/dd HH:mm");
+		test = true;
 	}
 
 
-	public static String testPing(String name, String addr, int i) {
+	public String testPing() {
 		cal = Calendar.getInstance();
 		String results = sdf.format(cal.getTime()) + ": Sending Ping Request to " + name;
 
 		try {
-			InetAddress.getByName(addr);
+			InetAddress.getByName(id);
 			results += "\t GOOD \n";
-			test[i] = true;
+			test = true;
 		} catch (Exception e) {
 			results += "\t --> BAD <-- \n" + e.toString();
-			if(test[i])
+			if(test)
 				JOptionPane.showMessageDialog(null, "Cannot connect to " + name, "No Connectivity", JOptionPane.INFORMATION_MESSAGE);
 		}
 
@@ -46,26 +48,14 @@ public abstract class Ping extends Thread {
 
 	@Override
 	public abstract void run();
-		/*while(true) {
-			String result = "";
-
-			for(int i = 0; i < id[0].length; i++) {
-				result += testPing(id[i][0], id[i][1], i);
-			}
-			
-			writeLog(result);
-			
-			try { // Put program to sleep for 15 minutes
-				Thread.sleep(900000);
-			} catch (InterruptedException e) {
-				writeLog(sdf.format(cal.getTime()) + e.toString());
-				break;
-			}
-		}*/
 	
-	public static boolean writeLog(String result) {
+	public boolean writeLog(String result) {
 		// TODO: Write Result to file. 
 		System.out.print(result);
 		return true;
+	}
+	
+	public void alert() {
+		// TODO: Alert user
 	}
 }

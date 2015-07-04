@@ -2,22 +2,16 @@ package ain.tolva.alerter.functions;
 
 public class AutoPing extends Ping {
 
-	public AutoPing(String[][] addr) {
-		super(addr);
+	public AutoPing(String n, String a) {
+		super(n, a);
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void run() {
 		while(true) {
-			String result = "";
-
-			for(int i = 0; i < id[0].length; i++) {
-				result += testPing(id[i][0], id[i][1], i);
-			}
-			
-			writeLog(result);
-			
+			writeLog(testPing());
+			// TODO: Alert user if no successful ping
 			try { // Put program to sleep for 15 minutes
 				Thread.sleep(900000);
 			} catch (InterruptedException e) {
