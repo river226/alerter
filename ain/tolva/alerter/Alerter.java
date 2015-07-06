@@ -33,9 +33,6 @@ import ain.tolva.alerter.backend.PingTest;
 // local import
 import ain.tolva.alerter.exceptions.*;
 
-import com.glavsoft.viewer.Viewer;
-import com.glavsoft.viewer.cli.*;
-
 @SuppressWarnings("unused")
 public class Alerter extends Thread {
 
@@ -88,60 +85,18 @@ public class Alerter extends Thread {
 		file = new AlertFile();
 
 		// Create a popup menu components
-		//MenuItem ccItem = new MenuItem("Control Center");
-		Menu alertMenu = new Menu("Alerts");
-		MenuItem amItem1 = new MenuItem("Alert Settings");
-		// TODO: add Checkbox items for alerts
-		Menu netMenu = new Menu("Network");
-		final MenuItem ipPingItem = new MenuItem("Ping");
-		final MenuItem autoPingItem = new MenuItem("Auto Ping");
-		final MenuItem openVNC = new MenuItem("Open VNC");
+		// Pull Menu items from plugins
 		MenuItem exitItem = new MenuItem("Exit");
 
 		//Add components to popup menu
 		//popup.add(ccItem);
-		popup.add(alertMenu);
-		alertMenu.add(amItem1);
-		popup.addSeparator();
-		popup.add(openVNC);
-		popup.addSeparator();
-		popup.add(netMenu);
-		netMenu.add(ipPingItem);
-		netMenu.add(autoPingItem);
+
 		popup.add(exitItem);
 
 		trayIcon.setPopupMenu(popup);
 		tray.add(trayIcon);
 
 		// TODO implement action listeners
-		
-		openVNC.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) { 
-				Viewer vn = new Viewer();
-			}
-		});
-
-		// Ping Menu
-		ipPingItem.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) { 
-				NotificationPane n = new NotificationPane(NotificationPane.ALERT, "This is a Test", "Test");
-				n.run();
-			}
-		});
-		autoPingItem.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				autoPing.run();
-			}
-		});
-
-
-		// Alerter Menu
-		amItem1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) { 
-				NotificationPane n = new NotificationPane(NotificationPane.ALERT, "This is a Test", "Test");
-				n.run();
-			}
-		});
 
 		// Exit
 		exitItem.addActionListener(new ActionListener() {
